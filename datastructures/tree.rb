@@ -1,5 +1,7 @@
-class Tree
+# frozen_string_literal: true
 
+# an example implementation of a tree
+class Tree
   def add(value)
     if @root.nil?
       @root = Node.new(value)
@@ -9,52 +11,31 @@ class Tree
   end
 
   def tree_values
-    tree_values = @root.get_values
-  end  
+    @root.get_values
+  end
 end
 
+# a simple container that stores a value used for datastructures
 class Node
-
   def initialize(value)
     @value = value
   end
-  
+
   def add(value)
-    if @value > value      
-      if @left.nil?
-        @left = Node.new(value)
-      else
-        @left.add(value)
-      end
+    if @value > value
+      @left.nil? ? Node.new(value) : @left.add(value)
     else
-      if @right.nil?
-        @right = Node.new(value)
-      else
-        @right.add(value)
-      end
+      @right.nil? ? Node.new(value) : @right.add(value)
     end
   end
 
-  def get_values
+  def values
     values = []
 
     values << @left.get_values unless @left.nil?
     values << @value
     values << @right.get_values unless @right.nil?
 
-    return values
+    values
   end
 end
-
-
-mytree = Tree.new
-mytree.add(3)
-mytree.add(2)
-mytree.add(10)
-mytree.add(5)
-mytree.add(6)
-mytree.add(1)
-
-
-values = mytree.tree_values
-puts "#{values}"
