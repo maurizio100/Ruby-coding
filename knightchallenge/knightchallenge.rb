@@ -77,7 +77,7 @@ target = gets.chomp
 
 solution = knight(start, target)
 
-solution.each do |f|
+solution.reverse_each do |f|
   print "| #{f} | "
 end
 
