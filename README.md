@@ -11,6 +11,5 @@ stuff. Actuall you can find implementations for:
 
 * Shortest Knight path challenge
   * a challenge for finding the shortest path for a knight
-  * [Reference to the Challenge on Codewars](https://www.codewars.com/kata/shortest-knight-path/train/ruby)
 
 I use this repo to sharpen my Ruby skills :-)
