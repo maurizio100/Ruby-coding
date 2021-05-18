@@ -1,21 +1,28 @@
 require_relative "../evaluation_strategy"
 require_relative "../point_map"
+require_relative "standard_console_statistics"
 
 class StandardEvaluator
     include EvaluationStrategy
-
+    
     @@point_map = PointMapModule.create_point_map_from_file("standard/standard_point_scale.csv")
 
-    def initialize
+    def initialize(presenter: StandardConsolePrinter.new)
         @shots = 0
         @score = 0
-        @cummulated_score=Array.new
-        @scores=Array.new
-        @missed_shot=0
+        @cummulated_score = Array.new
+        @scores = Array.new
+        @missed_shot = 0
+        @statistics_presenter = presenter
+    end
+    
+    def present_statistics(name)
+        @statistics_presenter.perform_statistic_presentation(get_statistics(name))
     end
 
-    def get_statistics()
+    def get_statistics(name)
         return { 
+            name: name,
             shots: @shots,
             score: @score, 
             cummulated: @cummulated_score,

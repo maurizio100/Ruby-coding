@@ -1,25 +1,31 @@
 require_relative "../evaluation_strategy"
 require_relative "../point_map"
+require_relative "3D_parcours_console_statistics"
 
 class ParcoursEvaluator
     include EvaluationStrategy
 
     @@point_map = PointMapModule.create_point_map_from_file("3D_parcours/3D_parcours_point_scale.csv")
 
-    def initialize
+    def initialize(presenter: ParcoursConsolePrinter.new)
         @shots = 0
         @score = 0
         @first_hits = 0
         @missed_shots = 0
         @kills = 0
         @life = 0
-        @cummulated_score=Array.new
-        @scores=Array.new
+        @cummulated_score = Array.new
+        @scores = Array.new
+        @statistics_presenter = presenter
     end
 
-    def get_statistics()
+    def present_statistics(name)
+        @statistics_presenter.perform_statistic_presentation(get_statistics(name))
+    end
+
+    def get_statistics(name)
         return { 
-            name: @name, 
+            name: name, 
             shots: @shots,
             score: @score, 
             first_hits: @first_hits, 

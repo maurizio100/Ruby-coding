@@ -12,11 +12,13 @@ module ArcherModule
 end
 
 class Archer
-    attr_reader :name
-
     def initialize(name, score_card)
         @name = name
         @score_card = score_card
+    end
+
+    def present_statistics()
+        @score_card.present_statistics(@name)
     end
 
     def get_statistics()

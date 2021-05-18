@@ -6,4 +6,8 @@ module EvaluationStrategy
     def get_statistics()
         raise "Not implemented"
     end
+
+    def present_statistics(name)
+        raise "Not implemented"
+    end
 end
